@@ -1,4 +1,4 @@
 ﻿public interface ICharacterController
 {
-    ICommand HandleInput();
+    void HandleInput(Character3D character);
 }

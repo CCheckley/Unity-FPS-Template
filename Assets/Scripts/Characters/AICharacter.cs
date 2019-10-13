@@ -3,7 +3,7 @@
     protected override void Start()
     {
         base.Start();
-        characterController3D = new AICharacterController();
+        characterController3D = new AIController();
     }
 
     protected override void Update()

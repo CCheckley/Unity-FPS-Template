@@ -4,19 +4,13 @@
 [RequireComponent(typeof(MeshRenderer))]
 public class Character3D : MonoBehaviour
 {
-    delegate void InputCommand(Character3D character);
-    InputCommand inputCommand;
-    // --------------------------------------------------------------
-
-
-
     CharacterController characterController;
 
     [SerializeField] protected GameObject characterHead;
 
     protected ICharacterController characterController3D;
 
-    [SerializeField] protected float lookSpeed = 10.0f;
+    [SerializeField] protected float lookSpeed = 30.0f;
     [SerializeField] protected float movementSpeed = 10.0f;
     [SerializeField] protected float jumpForce = 10.0f;
 
@@ -34,20 +28,10 @@ public class Character3D : MonoBehaviour
 
     protected virtual void Update()
     {
-        inputCommand
+        characterController3D.HandleInput(this);
 
-        //TODO - fix me - Player can only perform one command at a time
-        //ICommand characterCommand = characterController3D.HandleInput();
-        //if (characterCommand != null)
-        //    characterCommand.Execute(this);
-
-        //bool isMoveCommand = (characterCommand as CharacterMoveCommand != null);
-
-        //if (characterController.isGrounded && !isMoveCommand)
-        //    movementDirection = new Vector3(0.0f, movementDirection.y, 0.0f);
-
-        //movementDirection.y -= gravity * Time.deltaTime;
-        //characterController.Move(movementDirection * Time.deltaTime);
+        movementDirection.y -= gravity * Time.deltaTime;
+        characterController.Move(movementDirection * Time.deltaTime);
     }
 
     public void Move(float xInput, float yInput, bool isJumping)
